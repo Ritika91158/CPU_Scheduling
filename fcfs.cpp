@@ -1,9 +1,8 @@
 #include <iostream>
-#include <vector>
 using namespace std;
 
-void fcfsScheduling(vector<int>& processes, int n, vector<int>& burst_time) {
-    vector<int> waiting_time(n), turnaround_time(n);
+void fcfsScheduling(int processes[], int n, int burst_time[]) {
+    int waiting_time[n], turnaround_time[n];
     waiting_time[0] = 0;
     turnaround_time[0] = burst_time[0];
 
@@ -12,6 +11,7 @@ void fcfsScheduling(vector<int>& processes, int n, vector<int>& burst_time) {
         turnaround_time[i] = burst_time[i] + waiting_time[i];
     }
 
+    cout << "FCFS Scheduling:\n";
     cout << "Process\tBurst Time\tWaiting Time\tTurnaround Time\n";
     for (int i = 0; i < n; i++) {
         cout << processes[i] << "\t" << burst_time[i] << "\t\t" << waiting_time[i] << "\t\t" << turnaround_time[i] << endl;
@@ -27,9 +27,9 @@ void fcfsScheduling(vector<int>& processes, int n, vector<int>& burst_time) {
 }
 
 int main() {
-    vector<int> processes = {1, 2, 3};
-    vector<int> burst_time = {5, 2, 8};
-    int n = processes.size();
+    int processes[] = {1, 2, 3};
+    int burst_time[] = {5, 2, 8};
+    int n = sizeof(processes) / sizeof(processes[0]);
     
     fcfsScheduling(processes, n, burst_time);
     
